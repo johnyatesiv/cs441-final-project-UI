@@ -23,6 +23,13 @@
     float: right;
 }
 
+.UserRestaurantViewContainer {
+    width: 100vw;
+    text-align:center;
+}
+
 .UserRestaurantViewGrid {
     padding: 10vw;
+    min-width: 20vw;
+    width: 100vw;
 }

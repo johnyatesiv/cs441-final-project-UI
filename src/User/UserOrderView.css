@@ -1,0 +1,10 @@
+.UserOrderViewContainer {
+    width: 100vw;
+    text-align:center;
+}
+
+.UserOrderViewGrid {
+    padding: 10vw;
+    min-width: 20vw;
+    width: 100vw;
+}

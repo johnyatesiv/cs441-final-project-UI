@@ -4,6 +4,10 @@
     min-width: 200px;
 }
 
+.CartGrid {
+    padding: 2vw;
+}
+
 .CartContent {
     /*width: 80vw;*/
     max-width: 80vw;

@@ -43,9 +43,10 @@ class Cart extends React.Component {
                 </IconButton>
                 <div className="CartContent">
                     <Grid
+                        className="CartGrid"
                         container
                         direction="column"
-                        justify="center"
+                        justify="left"
                         alignItems="left"
                         spacing={16}
                     >

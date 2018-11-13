@@ -48,6 +48,7 @@ class UserView extends React.Component {
         return (
             <UserOrderView
                 user={this.state.user}
+                orders={this.props.orders}
                 open={this.props.orderViewOpen}
                 close={this.props.closeOrderView}
             />
@@ -60,6 +61,8 @@ class UserView extends React.Component {
                 user={this.state.user}
                 open={this.props.restaurantViewOpen}
                 close={this.props.closeRestaurantView}
+                restaurants={this.props.restaurants}
+                menus={this.props.menus}
             />
         );
     }

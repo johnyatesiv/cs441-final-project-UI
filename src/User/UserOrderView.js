@@ -14,15 +14,7 @@ class UserOrderView extends React.Component {
     constructor() {
         super();
 
-        this.state = {
-            orders: [
-                {
-                    id: 1,
-                    restaurant: "Burger Place",
-                    items : [{name: "Cheeseburger", price: 4.50}, {name: "Fries", price: 2.00}]
-                }
-            ]
-        };
+        this.state = {};
     }
 
     componentDidMount() {
@@ -42,26 +34,31 @@ class UserOrderView extends React.Component {
 
     render() {
         return (
-            <Grid
-                className="UserOrderViewGrid"
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing={40}
+            <div
+                className="UserOrderViewContainer"
             >
-                {
-                    this.state.orders.map(order => {
-                        return (
-                            <OrderSelection
-                                key={order.id}
-                                order={order}
-                                openParentMenu={this.openMenu.bind(this, order.id)}
-                            ></OrderSelection>
-                        );
-                    })
-                }
-            </Grid>
+                <h1>Your Orders</h1>
+                <Grid
+                    className="UserOrderViewGrid"
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                    spacing={40}
+                >
+                    {
+                        this.state.orders.map(order => {
+                            return (
+                                <OrderSelection
+                                    key={order.id}
+                                    order={order}
+                                    openParentMenu={this.openMenu.bind(this, order.id)}
+                                ></OrderSelection>
+                            );
+                        })
+                    }
+                </Grid>
+            </div>
         );
     }
 }
