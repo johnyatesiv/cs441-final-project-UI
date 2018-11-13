@@ -1,0 +1,44 @@
+{
+  "name": "cs441_final_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnyatesiv/cs441_final_project.git"
+  },
+  "author": "John Yates",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnyatesiv/cs441_final_project/issues"
+  },
+  "homepage": "/client",
+  "dependencies": {
+    "@material-ui/core": "^3.4.0",
+    "@material-ui/icons": "^3.0.1",
+    "ajv": "^6.5.5",
+    "express": "^4.16.4",
+    "mocha": "^5.2.0",
+    "mysql2": "^1.6.1",
+    "q": "^1.5.1",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-scripts": "2.1.1",
+    "sequelize": "^4.41.0"
+  }
+}

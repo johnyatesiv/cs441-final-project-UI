@@ -1,0 +1,39 @@
+.App {
+  min-height: 100vh;
+  min-width: 100vw;
+  text-align: center;
+  background-color: rgba(82, 82, 82, 0.5);
+  font-family: "American Typewriter";
+}
+
+.AppNav {
+  float: left;
+}
+
+.ViewGrid {
+  max-width: 50vw;
+  width: 50vw;
+  min-height: 80vh;
+  height: 80vh;
+  background-color: rgba(231, 231, 231, 0.5);
+}
+
+.Cart {
+  max-width: 20vw;
+  width: 20vw;
+  min-height: 80vh;
+  height: 80vh;
+}
+
+.LogoImg {
+  float: right;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

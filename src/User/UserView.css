@@ -1,0 +1,20 @@
+.UserView {
+    /*min-height: 100vh;*/
+    /*min-width: 90vw;*/
+    float: right;
+    /*display: flex;*/
+    background-color: rgba(60, 30, 8, 0.36);
+}
+
+.UserMenu {
+    vertical-align: top;
+    /*width: 10vw;*/
+    /*height: 100vh;*/
+}
+
+.UserMenuItem {
+    height: 100%;
+    width: 100%;
+    vertical-align: top;
+    background-color: #aeaeae;
+}
