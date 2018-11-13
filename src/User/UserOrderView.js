@@ -26,25 +26,17 @@ class UserOrderView extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/orders").then(orders => {
+        fetch("/orders").then(res => {
+            res.json();
+        }).then(json => {
             console.log("Fetched orders from API.");
+            this.setState({
+                orders: json
+            });
         }).catch(err => {
             this.setState({
                 error: true
             });
-        });
-    }
-
-    openMenu() {
-        this.setState({
-            displayMenu: true,
-            activeMenu: this.state.menus[arguments[0]]
-        });
-    }
-
-    closeMenu() {
-        this.setState({
-            displayMenu: false
         });
     }
 
