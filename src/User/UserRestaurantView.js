@@ -34,6 +34,9 @@ class UserRestaurantView extends React.Component {
             this.setState({
                 restaurants: restaurants
             });
+
+            console.log("Got restaurants:");
+            console.log(this.state.restaurants);
         }).catch(err => {
             this.setState({
                 error: true,
