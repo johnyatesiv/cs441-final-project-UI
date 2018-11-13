@@ -80,15 +80,17 @@ class UserRestaurantView extends React.Component {
                     spacing={40}
                 >
                     {
-                        this.state.restaurants.map(restaurant => {
-                            return (
-                                    <RestaurantSelection
-                                        key={restaurant.id}
-                                        restaurant={restaurant}
-                                        openParentMenu={this.openMenu.bind(this, restaurant.id)}
-                                    ></RestaurantSelection>
-                                   );
-                        })
+                        this.state.restaurants.length ?
+                            this.state.restaurants.map(restaurant => {
+                                return (
+                                <RestaurantSelection
+                                key={restaurant.id}
+                                restaurant={restaurant}
+                                openParentMenu={this.openMenu.bind(this, restaurant.id)}
+                                ></RestaurantSelection>
+                                );
+                            })
+                        : ""
                     }
                     <Menu
                         open={this.state.displayMenu}
