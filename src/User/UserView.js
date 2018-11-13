@@ -11,11 +11,7 @@ class UserView extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/user").then(user => {
-            this.processUser(user)
-        }).catch(err => {
-            this.handleError(err);
-        });
+
     }
 
     handleError(err) {
@@ -49,6 +45,8 @@ class UserView extends React.Component {
             <UserOrderView
                 user={this.state.user}
                 orders={this.props.orders}
+                restaurants={this.props.restaurants}
+                menus={this.props.menus}
                 open={this.props.orderViewOpen}
                 close={this.props.closeOrderView}
             />

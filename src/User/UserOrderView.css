@@ -8,3 +8,12 @@
     min-width: 20vw;
     width: 100vw;
 }
+
+.OrderCard {
+    min-width: 5vw;
+    min-height: 5vh;
+    width: 20vw;
+    height: 30vh;
+    padding: 4vw;
+    margin: 2vw;
+}

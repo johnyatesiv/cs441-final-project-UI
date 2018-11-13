@@ -2,10 +2,8 @@ import React from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Grid from '@material-ui/core/Grid';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
-import { Fastfood, Restaurant, ExitToApp, MoreVert, Close, ShoppingCart } from '@material-ui/icons';
+import { Fastfood, Restaurant, ShoppingCart } from '@material-ui/icons';
 
 /** Child Views **/
 import UserView from "./User/UserView";
@@ -82,16 +80,26 @@ class App extends React.Component {
   }
 
   addItemToCart(item) {
-    if(this.state.cart[item.id]) {
-      this.state.cart[item.id].quantity++;
+    let cart = this.state.cart;
+
+    if(cart[item.id]) {
+      cart[item.id].quantity++;
     } else {
-      this.state.cart[item.id] = item;
-      this.state.cart[item.id].quantity = 1;
+      cart[item.id] = item;
+      cart[item.id].quantity = 1;
     }
+
+    this.setState({
+      cart: cart
+    });
   }
 
   removeItemFromCart(index) {
-    delete this.state.cart[index];
+    let cart = this.state.cart;
+    delete cart[index];
+    this.setState({
+      cart: cart
+    });
   }
 
   getRestaurants() {
@@ -170,7 +178,7 @@ class App extends React.Component {
                 orders={this.state.orders}
                 mutateParentState={this.mutateState.bind(this)}
                 restaurantViewOpen={this.state.restaurantViewOpen}
-                orderViewOpen={this.state.restaurantViewOpen}
+                orderViewOpen={this.state.orderViewOpen}
                 addItemToCart={this.addItemToCart.bind(this)}
                 removeItemFromCart={this.removeItemFromCart.bind(this)}
             />

@@ -1,5 +1,6 @@
 import React from 'react';
 import './UserOrderView.css';
+import crypto from "crypto";
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 //import CardHeader from '@material-ui/core/CardHeader';
@@ -11,25 +12,24 @@ import CardActions from '@material-ui/core/CardActions';
 /** Other Views **/
 
 class UserOrderView extends React.Component {
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
         this.state = {};
+        console.log("orders:");
+        console.log(props.orders);
     }
 
     componentDidMount() {
-        fetch("/orders").then(res => {
-            res.json();
-        }).then(json => {
-            console.log("Fetched orders from API.");
-            this.setState({
-                orders: json
-            });
-        }).catch(err => {
-            this.setState({
-                error: true
-            });
-        });
+
+    }
+
+    getOrderRestaurant(order) {
+        return this.props.restaurants[order.restaurantId]
+    }
+
+    getOrderItems(order) {
+        let restaurant = this.getOrderRestaurant(order);
+        return [];
     }
 
     render() {
@@ -43,16 +43,17 @@ class UserOrderView extends React.Component {
                     container
                     direction="row"
                     justify="center"
-                    alignItems="center"
+                    alignItems="left"
                     spacing={40}
                 >
                     {
-                        this.state.orders.map(order => {
+                        this.props.orders.map(order => {
                             return (
                                 <OrderSelection
                                     key={order.id}
                                     order={order}
-                                    openParentMenu={this.openMenu.bind(this, order.id)}
+                                    restaurant={this.getOrderRestaurant(order)}
+                                    items={this.getOrderItems(order)}
                                 ></OrderSelection>
                             );
                         })
@@ -69,30 +70,31 @@ class OrderSelection extends React.Component {
         this.state = {};
     }
 
-    onClick() {
+    openItemSummary(order) {
 
     }
 
-    openItemSummary() {
-
+    hashOrderId(id) {
+        return crypto.createHash('md5').update(id.toString()).digest('hex').substr(0, 8);
     }
 
     render() {
         return (
             <Card
                 className="OrderCard"
-                onClick={this.openItemSummary}
+                onClick={this.openItemSummary(this.props.order)}
             >
                 <CardContent className="OrderCardContent">
-                    {this.props.order.name}
+                    Order {this.hashOrderId(this.props.order.id)}
                     <br/>
                     <CardMedia
                         className="OrderCardMedia"
                         component="img"
-                        image={this.props.order.image}
                     />
                     <br/>
-                    {this.props.order.price}
+                    From {this.props.restaurant.name}
+                    {this.props.order.total}<br />
+                    {this.props.order.state}
                 </CardContent>
                 <CardActions></CardActions>
             </Card>
