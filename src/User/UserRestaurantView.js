@@ -29,7 +29,7 @@ class UserRestaurantView extends React.Component {
     }
 
     getRestaurants() {
-        fetch("/restaurants").then(restaurants => {
+        fetch("https://cs441-api.herokuapp.com/restaurants").then(restaurants => {
             console.log("Fetched restaurants from API.");
             this.setState({
                 restaurants: restaurants
@@ -43,7 +43,7 @@ class UserRestaurantView extends React.Component {
     }
 
     getMenus() {
-        fetch("/menus").then(menus => {
+        fetch("https://cs441-api.herokuapp.com/menus").then(menus => {
             console.log("Fetched menus from API.");
             this.setState({
                 menus: menus
