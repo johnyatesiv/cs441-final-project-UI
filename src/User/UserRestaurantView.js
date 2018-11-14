@@ -28,7 +28,7 @@ class UserRestaurantView extends React.Component {
     openMenu() {
         this.setState({
             displayMenu: true,
-            activeMenu: this.props.menus[arguments[0]]
+            activeMenu: this.props.restaurants[arguments[0]].items
         });
     }
 
@@ -75,8 +75,9 @@ class UserRestaurantView extends React.Component {
                         }
                         <Menu
                             open={this.state.displayMenu}
-                            menu={this.state.activeMenu}
-                            close={this.closeMenu.bind(this)}
+                            items={this.state.activeMenu}
+                            closeMenu={this.closeMenu.bind(this)}
+                            addItemToCart={this.props.addItemToCart}
                         ></Menu>
                     </Grid>
                 </div>

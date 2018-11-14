@@ -62,14 +62,25 @@ class UserOrderView extends React.Component {
                 >
                     {
                         this.getOrders().map((order) => {
-                            return (
-                                <OrderSelection
-                                    key={order.id}
-                                    order={order}
-                                    restaurant={this.getOrderRestaurant(order)}
-                                    items={this.getOrderItems(order)}
-                                ></OrderSelection>
-                            );
+                            if (order.state === "pending") {
+                                return (
+                                    <PendingOrderSelection
+                                        key={order.id}
+                                        order={order}
+                                        restaurant={this.getOrderRestaurant(order)}
+                                        items={this.getOrderItems(order)}
+                                    ></PendingOrderSelection>
+                                );
+                            } else {
+                                return (
+                                    <FulfilledOrderSelection
+                                        key={order.id}
+                                        order={order}
+                                        restaurant={this.getOrderRestaurant(order)}
+                                        items={this.getOrderItems(order)}
+                                    ></FulfilledOrderSelection>
+                                );
+                            }
                         })
                     }
                 </Grid>
@@ -78,7 +89,7 @@ class UserOrderView extends React.Component {
     }
 }
 
-class OrderSelection extends React.Component {
+class FulfilledOrderSelection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -96,7 +107,7 @@ class OrderSelection extends React.Component {
         console.log(this.props);
         return (
             <Card
-                className="OrderCard"
+                className="FulfilledOrderCard"
             >
                 <CardContent className="OrderCardContent">
                     Order {this.hashOrderId(this.props.order.id)}
@@ -107,6 +118,46 @@ class OrderSelection extends React.Component {
                     />
                     <br/>
                     From {this.props.restaurant.name}
+                    {this.props.order.total}<br />
+                    {this.props.order.state}
+                </CardContent>
+                <CardActions></CardActions>
+            </Card>
+        )
+    }
+}
+
+class PendingOrderSelection extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    openItemSummary(order) {
+
+    }
+
+    hashOrderId(id) {
+        return crypto.createHash('md5').update(id.toString()).digest('hex').substr(0, 8);
+    }
+
+    render() {
+        console.log(this.props);
+        return (
+            <Card
+                className="PendingOrderCard"
+            >
+                <CardContent className="OrderCardContent">
+                    Order {this.hashOrderId(this.props.order.id)}
+                    <br/>
+                    <CardMedia
+                        className="OrderCardMedia"
+                        component="img"
+                    />
+                    <br/>
+                    {this.props.restaurant.name}
+                    <br />
+                    {this.props.order.createdAt}
                     {this.props.order.total}<br />
                     {this.props.order.state}
                 </CardContent>

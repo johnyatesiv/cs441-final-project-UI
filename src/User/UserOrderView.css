@@ -16,4 +16,13 @@
     height: 30vh;
     padding: 4vw;
     margin: 2vw;
+    background-color: #F1EDEE;
+}
+
+.FulfilledOrderSelection {
+    background-color: #3D5467;
+}
+
+.PendingOrderSelection {
+    background-color: #8AA29E;
 }

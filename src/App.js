@@ -7,7 +7,6 @@ import { Fastfood, Restaurant, ShoppingCart } from '@material-ui/icons';
 
 /** Child Views **/
 import UserView from "./User/UserView";
-import Cart from "./Order/Cart";
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class App extends React.Component {
     this.state = {
       restaurantViewOpen: false,
       orderViewOpen: false,
-      cart: [],
+      cartItems: {},
       restaurants: {},
       menu: {},
       orders: {}
@@ -80,7 +79,8 @@ class App extends React.Component {
   }
 
   addItemToCart(item) {
-    let cart = this.state.cart;
+    console.log(item);
+    let cart = this.state.cartItems;
 
     if(cart[item.id]) {
       cart[item.id].quantity++;
@@ -95,7 +95,7 @@ class App extends React.Component {
   }
 
   removeItemFromCart(index) {
-    let cart = this.state.cart;
+    let cart = this.state.cartItems;
     delete cart[index];
     this.setState({
       cart: cart
@@ -183,8 +183,9 @@ class App extends React.Component {
             {
               this.noViewsOpen() ?
                 (
-                  <div style={{width: "100vw", height: "100vh", textAlign: "center"}}>
-                    <img style={{width: "50vw", height: "50vh", marginLeft: "10vw"}} src="/foodapp_logo.png" alt="Foodapp Logo" />
+                  <div className="LogoContainer">
+                    <img className="LandingLogo" src="/foodapp_logo_v3.png" alt="Foodapp Logo" />
+                    <h4>All images courtesy of Wikimedia.</h4>
                   </div>
                 )
                 : ""
@@ -193,19 +194,16 @@ class App extends React.Component {
                 restaurants={this.state.restaurants}
                 menus={this.state.menus}
                 orders={this.state.orders}
+                cartItems={this.state.cartItems}
                 mutateParentState={this.mutateState.bind(this)}
                 restaurantViewOpen={this.state.restaurantViewOpen}
                 orderViewOpen={this.state.orderViewOpen}
                 addItemToCart={this.addItemToCart.bind(this)}
+                closeCart={this.closeCart.bind(this)}
                 removeItemFromCart={this.removeItemFromCart.bind(this)}
+                cartOpen={this.state.cartOpen}
             />
           </Grid>
-          <Cart
-              open={this.state.cartOpen}
-              close={this.closeCart.bind(this)}
-              items={this.state.cart}
-              removeItemFromCart={this.removeItemFromCart.bind(this)}
-          ></Cart>
       </div>
     );
   }
