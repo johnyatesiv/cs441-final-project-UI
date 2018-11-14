@@ -17,9 +17,9 @@ class App extends React.Component {
       restaurantViewOpen: false,
       orderViewOpen: false,
       cart: [],
-      restaurants: [],
-      menu: [],
-      orders: []
+      restaurants: {},
+      menu: {},
+      orders: {}
     };
   }
 
@@ -106,13 +106,16 @@ class App extends React.Component {
     fetch("https://cs441-api.herokuapp.com/restaurants").then(res => {
       return res.json();
     }).then(json => {
-      console.log("Fetched restaurants from API.");
-      this.setState({
-        restaurants: json
+      let restaurants = {};
+      json.forEach(restaurant => {
+        restaurants[restaurant.id] = restaurant;
       });
 
-      console.log("Got restaurants:");
-      console.log(this.state.restaurants);
+
+      this.setState({
+        restaurants: restaurants
+      });
+      console.log("Fetched restaurants from API.");
     }).catch(err => {
       this.setState({
         error: true,
@@ -125,10 +128,17 @@ class App extends React.Component {
     fetch("https://cs441-api.herokuapp.com/menus").then(res => {
       return res.json();
     }).then(json => {
-      console.log("Fetched menus from API.");
-      this.setState({
-        menus: json
+      let menus = {};
+      json.forEach(menu => {
+        menus[menu.id] = menu;
       });
+
+
+      this.setState({
+        menus: menus
+      });
+
+      console.log("Fetched menus from API.");
     }).catch(err => {
       this.setState({
         error: true,
@@ -141,10 +151,17 @@ class App extends React.Component {
     fetch("https://cs441-api.herokuapp.com/orders").then(res => {
       return res.json();
     }).then(json => {
-      console.log("Fetched orders from API.");
-      this.setState({
-        orders: json
+      let orders = {};
+
+      json.forEach(order => {
+        orders[order.id] = order;
       });
+
+      this.setState({
+        orders: orders
+      });
+
+      console.log("Fetched orders from API.");
     }).catch(err => {
       this.setState({
         error: true,

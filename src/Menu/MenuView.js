@@ -15,6 +15,7 @@ class Menu extends React.Component {
     }
 
     render() {
+        console.log(this.props.menu);
         return (
             <Popover
                 className="ActiveMenuPopover"

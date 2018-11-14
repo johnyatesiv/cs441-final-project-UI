@@ -17,7 +17,7 @@ class UserRestaurantView extends React.Component {
 
         this.state = {
             displayMenu: false,
-            activeMenu: [],
+            activeMenu: []
         };
     }
 
@@ -28,7 +28,7 @@ class UserRestaurantView extends React.Component {
     openMenu() {
         this.setState({
             displayMenu: true,
-            activeMenu: this.state.menus[arguments[0]]
+            activeMenu: this.props.menus[arguments[0]]
         });
     }
 
@@ -36,6 +36,16 @@ class UserRestaurantView extends React.Component {
         this.setState({
             displayMenu: false
         });
+    }
+
+    getRestaurants() {
+        let restaurants = [];
+
+        for(var k in this.props.restaurants) {
+            restaurants.push(this.props.restaurants[k]);
+        }
+
+        return restaurants;
     }
 
     render() {
@@ -53,7 +63,7 @@ class UserRestaurantView extends React.Component {
                         spacing={40}
                     >
                         {
-                            this.props.restaurants.map(restaurant => {
+                            this.getRestaurants().map((restaurant) => {
                                 return (
                                     <RestaurantSelection
                                         key={restaurant.id}

@@ -24,12 +24,26 @@ class UserOrderView extends React.Component {
     }
 
     getOrderRestaurant(order) {
-        return this.props.restaurants[order.restaurantId]
+        if(this.props.restaurants[order.restaurantId]) {
+            return this.props.restaurants[order.restaurantId]
+        } else {
+            return {};
+        }
     }
 
     getOrderItems(order) {
-        let restaurant = this.getOrderRestaurant(order);
+//        let restaurant = this.getOrderRestaurant(order);
         return [];
+    }
+
+    getOrders() {
+        let orders = [];
+
+        for(var k in this.props.orders) {
+            orders.push(this.props.orders[k]);
+        }
+
+        return orders;
     }
 
     render() {
@@ -43,11 +57,11 @@ class UserOrderView extends React.Component {
                     container
                     direction="row"
                     justify="center"
-                    alignItems="left"
+                    alignItems="center"
                     spacing={40}
                 >
                     {
-                        this.props.orders.map(order => {
+                        this.getOrders().map((order) => {
                             return (
                                 <OrderSelection
                                     key={order.id}
@@ -79,10 +93,10 @@ class OrderSelection extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <Card
                 className="OrderCard"
-                onClick={this.openItemSummary(this.props.order)}
             >
                 <CardContent className="OrderCardContent">
                     Order {this.hashOrderId(this.props.order.id)}
