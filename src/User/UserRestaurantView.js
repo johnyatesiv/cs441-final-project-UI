@@ -16,6 +16,7 @@ class UserRestaurantView extends React.Component {
         super(props);
 
         this.state = {
+            selectedRestaurant: false,
             displayMenu: false,
             activeMenu: []
         };
@@ -64,13 +65,17 @@ class UserRestaurantView extends React.Component {
                     >
                         {
                             this.getRestaurants().map((restaurant) => {
-                                return (
-                                    <RestaurantSelection
-                                        key={restaurant.id}
-                                        restaurant={restaurant}
-                                        openParentMenu={this.openMenu.bind(this, restaurant.id)}
-                                    ></RestaurantSelection>
-                                );
+                                if(this.props.selectedRestaurant && restaurant.id !== this.props.selectedRestaurant) {
+                                     return null;
+                                } else {
+                                    return (
+                                        <RestaurantSelection
+                                            key={restaurant.id}
+                                            restaurant={restaurant}
+                                            openParentMenu={this.openMenu.bind(this, restaurant.id)}
+                                        ></RestaurantSelection>
+                                    );
+                                }
                             })
                         }
                         <Menu

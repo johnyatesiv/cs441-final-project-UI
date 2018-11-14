@@ -69,6 +69,7 @@ class UserView extends React.Component {
                     open={this.props.restaurantViewOpen}
                     close={this.props.closeRestaurantView}
                     restaurants={this.props.restaurants}
+                    selectedRestaurant={this.props.selectedRestaurant}
                     menus={this.props.menus}
                     addItemToCart={this.props.addItemToCart}
                     closeCart={this.props.closeCart}
