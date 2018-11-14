@@ -30,23 +30,26 @@ class Menu extends React.Component {
                 open={this.props.open}
             >
                 <Close className="CloseButton" onClick={this.props.closeMenu}></Close>
-                <h1>Menu</h1><br/>
-                <br />
+                <div className="MenuHeader">
+                    <h1>Menu</h1>
+                </div>
                 <div className="ActiveMenu">
                     <Grid
                         container
                         direction="row"
-                        justify="left"
-                        alignItems="left"
+                        justify="flex"
+                        alignItems="flex"
                         spacing={16}
                     >
                         {(this.props.items.map((item) => {
-                            return <MenuItem
-                                key={item.id}
-                                item={item}
-                                addItemToCart={this.props.addItemToCart}
-                                closeMenu={this.props.closeMenu}
-                            ></MenuItem>
+                            return (
+                                <MenuItem
+                                    key={item.id}
+                                    item={item}
+                                    addItemToCart={this.props.addItemToCart}
+                                    closeMenu={this.props.closeMenu}
+                                ></MenuItem>
+                            )
                         }))}
                     </Grid>
                 </div>
@@ -79,7 +82,9 @@ class MenuItem extends React.Component {
                     >
                     </CardMedia>
                     <br/>
-                    {this.props.item.name} | ${this.props.item.price}
+                    {this.props.item.name}
+                    <br />
+                    ${this.props.item.price}
                     <CardActions>
                         <Button
                             onClick={this.passItemToAppCart.bind(this)}

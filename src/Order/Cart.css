@@ -1,7 +1,9 @@
 .Cart {
-    width: 80vw;
-    max-width: 80vw;
+    width: 50vw;
+    max-width: 50vw;
     min-width: 200px;
+    margin: 4vw;
+    background-color: #494a44;
 }
 
 .CartGrid {
@@ -15,15 +17,17 @@
     height: 80vh;
     max-height: 80vh;
     min-height: 20vw;
+    text-align: center;
 }
 
 .CartItem {
     padding: 2vw;
     width: 15vw;
     max-width: 15vw;
-    height: 15vw;
-    max-height: 15vh;
+    height: 25vw;
+    max-height: 25vh;
     margin: 1vw;
+    text-align: center;
 }
 
 .CartItemCardMedia {
@@ -35,7 +39,10 @@
 }
 
 .CartTotal {
-    float: right;
-    top: 100vh;
-    margin-right: 10vw;
+
+}
+
+.CheckoutButton {
+    background-color: #686963;
+    color: #686963;
 }

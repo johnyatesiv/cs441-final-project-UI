@@ -185,7 +185,7 @@ class App extends React.Component {
                 (
                   <div className="LogoContainer">
                     <img className="LandingLogo" src="/foodapp_logo_v3.png" alt="Foodapp Logo" />
-                    <h4>All images courtesy of Wikimedia.</h4>
+                    <h4>All images courtesy of Wikimedia</h4>
                   </div>
                 )
                 : ""

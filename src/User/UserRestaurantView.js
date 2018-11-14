@@ -53,7 +53,7 @@ class UserRestaurantView extends React.Component {
                 <div
                     className="UserRestaurantViewContainer"
                 >
-                    <h1>Restaurants near you</h1>
+                    <h1>Restaurants Near You</h1>
                     <Grid
                         className="UserRestaurantViewGrid"
                         container

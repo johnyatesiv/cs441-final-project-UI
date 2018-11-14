@@ -1,6 +1,13 @@
-.ActiveMenu, .ActiveMenuPopover {
-    height: 100vh;
-    width: 100vw;
+.ActiveMenuPopover {
+    width: 55vw;
+    height: 75vh;
+    margin: 4vw;
+    background-color: #494a44;
+}
+
+.ActiveMenu {
+    height: 70vh;
+    width: 70vw;
     background-color: #686963;
 }
 
@@ -39,6 +46,10 @@
     max-width: 10vw;
     max-height: 15vh;
     border: 1px solid #686963;
+}
+
+.MenuHeader {
+    margin-left: 2vw;
 }
 
 .UserMenuItem {

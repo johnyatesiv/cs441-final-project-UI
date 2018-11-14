@@ -69,6 +69,13 @@ class Cart extends React.Component {
                     </Grid>
                     <div className="CartTotal">
                         <b>Total:</b> ${this.calculateTotal()}
+                        <br />
+                        <Button
+                            className="CheckoutButton"
+                            onClick={this.props.checkout}
+                        >
+                            Checkout
+                        </Button>
                     </div>
                 </div>
             </Popover>
@@ -92,7 +99,7 @@ class CartItem extends React.Component {
                         component="img"
                         image={this.props.item.image}
                     ></CardMedia>
-                    {this.props.item.name}  x {this.props.item.quantity}<br />
+                    {this.props.item.quantity} {this.props.item.name}<br />
                     ${this.props.item.price * this.props.item.quantity}
                 </CardContent>
             </Card>

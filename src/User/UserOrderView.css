@@ -9,11 +9,11 @@
     width: 100vw;
 }
 
-.OrderCard {
+.OrderCard, .PendingOrderCard, .FulfilledOrderCard {
     min-width: 5vw;
     min-height: 5vh;
-    width: 20vw;
-    height: 30vh;
+    width: 40vw;
+    height: 40vh;
     padding: 4vw;
     margin: 2vw;
     background-color: #F1EDEE;
