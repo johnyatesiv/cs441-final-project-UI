@@ -112,6 +112,12 @@ class App extends React.Component {
     });
   }
 
+  clearCart() {
+    this.setState({
+      cartItems: {}
+    });
+  }
+
   getRestaurants() {
     fetch("https://cs441-api.herokuapp.com/restaurants").then(res => {
       return res.json();
@@ -195,11 +201,11 @@ class App extends React.Component {
       },
       body: JSON.stringify(this.state.cartItems)
     }).then((res) => {
+      console.log(this.state.cartItems);
       this.getOrders();
       this.openOrderView();
+      this.clearCart();
     });
-
-    console.log(this.state.cartItems);
   }
 
   render() {
