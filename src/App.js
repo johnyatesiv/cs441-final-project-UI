@@ -199,12 +199,19 @@ class App extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.cartItems)
+      body: this.createOrderPOSTBody()
     }).then((res) => {
       console.log(this.state.cartItems);
       this.getOrders();
       this.openOrderView();
       this.clearCart();
+    });
+  }
+
+  createOrderPOSTBody() {
+    return JSON.stringify({
+      restaurantId: this.state.selectedRestaurant,
+      items: this.state.cartItems
     });
   }
 
