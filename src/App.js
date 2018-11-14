@@ -170,6 +170,24 @@ class App extends React.Component {
     });
   }
 
+  checkout() {
+    this.closeCart();
+
+    fetch('https://cs441-api.herokuapp.com/orders', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state.cartItems)
+    }).then((res) => {
+      this.getOrders();
+      this.openOrderView();
+    });
+
+    console.log(this.state.cartItems);
+  }
+
   render() {
     return (
       <div className="App">
@@ -202,6 +220,7 @@ class App extends React.Component {
                 closeCart={this.closeCart.bind(this)}
                 removeItemFromCart={this.removeItemFromCart.bind(this)}
                 cartOpen={this.state.cartOpen}
+                checkout={this.checkout.bind(this)}
             />
           </Grid>
       </div>

@@ -73,6 +73,7 @@ class Cart extends React.Component {
                         <Button
                             className="CheckoutButton"
                             onClick={this.props.checkout}
+                            styles={{}}
                         >
                             Checkout
                         </Button>

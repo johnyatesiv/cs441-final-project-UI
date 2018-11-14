@@ -78,6 +78,7 @@ class UserView extends React.Component {
                     close={this.props.closeCart}
                     cartItems={this.props.cartItems}
                     removeItemFromCart={this.removeItemFromCart}
+                    checkout={this.props.checkout}
                 ></Cart>
             </div>
         );
