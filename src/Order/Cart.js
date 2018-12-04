@@ -67,7 +67,7 @@ class Cart extends React.Component {
                         }
                         <br />
                     </Grid>
-                    <div className="CartTotal">
+                    <div className="CartActions">
                         <b>Total:</b> ${this.calculateTotal()}
                         <br />
                         <Button

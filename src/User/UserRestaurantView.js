@@ -111,6 +111,7 @@ class RestaurantSelection extends React.Component {
                 <CardContent className="RestaurantCardContent">
                     {this.props.restaurant.name}
                     <br/>
+                    <br/>
                     <CardMedia
                         className="RestaurantCardMedia"
                         component="img"
@@ -119,7 +120,6 @@ class RestaurantSelection extends React.Component {
                     <br/>
                     {this.props.restaurant.description}
                 </CardContent>
-                <CardActions></CardActions>
             </Card>
         )
     }

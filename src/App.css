@@ -2,8 +2,10 @@
   min-height: 100vh;
   min-width: 100vw;
   text-align: center;
-  background-color: #DB5461;
-  font-family: "American Typewriter";
+  background-color: rgba(219, 84, 97, 0.61);
+  /*font-family: "American Typewriter";*/
+  font-family: Verdana;
+  font-weight: bold;
 }
 
 .AppNav {
@@ -27,18 +29,14 @@
 }
 
 .LandingLogo {
-  width: 50vw;
-  height: 35vh;
+  width: 100vw;
+  height: 70vh;
 }
 
 .LogoContainer {
   width: 100vw;
   height: 100vh;
   text-align: center;
-}
-
-.LogoImg {
-  float: right;
 }
 
 @keyframes App-logo-spin {

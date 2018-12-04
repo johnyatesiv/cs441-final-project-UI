@@ -35,7 +35,6 @@ class Menu extends React.Component {
                 </div>
                 <div className="ActiveMenu">
                     <Grid
-                        container
                         direction="row"
                         justify="flex"
                         alignItems="flex"
@@ -82,11 +81,10 @@ class MenuItem extends React.Component {
                     >
                     </CardMedia>
                     <br/>
-                    {this.props.item.name}
-                    <br />
-                    ${this.props.item.price}
+                    {this.props.item.name} ${this.props.item.price}
                     <CardActions>
                         <Button
+                            className="MenuBuyButton"
                             onClick={this.passItemToAppCart.bind(this)}
                         >Order</Button>
                     </CardActions>

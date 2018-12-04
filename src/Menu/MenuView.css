@@ -1,13 +1,13 @@
 .ActiveMenuPopover {
-    width: 55vw;
-    height: 75vh;
+    width: 50vw;
+    height: 80vh;
     margin: 4vw;
     background-color: #494a44;
 }
 
 .ActiveMenu {
-    height: 70vh;
-    width: 70vw;
+    height: 600vh;
+    width: 50vw;
     background-color: #686963;
 }
 
@@ -20,13 +20,19 @@
 }
 
 .MenuItemCard {
-    max-width: 100vw;
-    max-height: 100vh;
+    max-width: 30vw;
+    max-height: 35vh;
+    height: 20vh;
     margin: 1vw;
 }
 
 .MenuItemCardContent {
     text-align:center;
+}
+
+.MenuBuyButton {
+    float: right;
+    margin-left: 4.5vw!important;
 }
 
 .CloseButton {
@@ -45,7 +51,8 @@
     width: 10vw;
     max-width: 10vw;
     max-height: 15vh;
-    border: 1px solid #686963;
+    border: 2px solid #686963;
+    float: left;
 }
 
 .MenuHeader {
