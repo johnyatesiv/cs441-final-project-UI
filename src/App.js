@@ -3,6 +3,8 @@ import React from 'react';
 import './App.css';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 import { Fastfood, Restaurant, ShoppingCart } from '@material-ui/icons';
 
 /** Child Views **/
@@ -13,6 +15,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      isLoggedIn: false,
       restaurantViewOpen: false,
       orderViewOpen: false,
       cartItems: {},
@@ -24,9 +27,6 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    this.getRestaurants();
-    this.getMenus();
-    this.getOrders();
     this.getGeolocation();
   }
 
@@ -117,6 +117,20 @@ class App extends React.Component {
     this.setState({
       cartItems: {}
     });
+  }
+
+  renderMainMenu() {
+    if(this.state.isLoggedIn) {
+      return (
+          <MainMenu
+              openRestaurantView={this.openRestaurantView.bind(this)}
+              openOrderView={this.openOrderView.bind(this)}
+              openCart={this.openCart.bind(this)}
+          />
+      )
+    } else {
+      return "";
+    }
   }
 
   getRestaurants() {
@@ -236,14 +250,61 @@ class App extends React.Component {
     });
   }
 
+  updateEmail(e) {
+    this.setState({
+      email: e.target.value
+    });
+  }
+
+  updatePassword(e) {
+    this.setState({
+      password: e.target.value
+    });
+  }
+
+  login() {
+    fetch('https://cs441-api.herokuapp.com/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: this.createLoginPOSTBody()
+    }).then(res => {
+        return res.json();
+    })
+    .then((json) => {
+      console.log(json);
+      if(json.error || !json.token) {
+        alert("There was an error logging you in.");
+      } else {
+        this.loadLoggedInUI(json.token);
+      }
+    });
+  }
+
+  createLoginPOSTBody() {
+    return JSON.stringify({
+      email: this.state.email,
+      password: this.state.password
+    })
+  }
+
+  loadLoggedInUI(token) {
+    this.setState({
+      isLoggedIn: true,
+      token: token
+    });
+
+    this.getRestaurants();
+    this.getMenus();
+    this.getOrders();
+  }
+
   render() {
     return (
       <div className="App">
-          <MainMenu
-              openRestaurantView={this.openRestaurantView.bind(this)}
-              openOrderView={this.openOrderView.bind(this)}
-              openCart={this.openCart.bind(this)}
-          />
+          {this.renderMainMenu()}
           <Grid container className="AppGrid">
             <br />
             {
@@ -251,6 +312,18 @@ class App extends React.Component {
                 (
                   <div className="LogoContainer">
                     <img className="LandingLogo" src="/foodapp_logo_v3.png" alt="Foodapp Logo" />
+                    {
+                      !this.state.isLoggedIn ?
+                          <form>
+                            <Input name="email" placeholder="Email" onChange={this.updateEmail.bind(this)}/>
+                            <br/>
+                            <Input name="password" placeholder="Password" type="password" onChange={this.updatePassword.bind(this)} />
+                            <br/>
+                            <Button onClick={this.login.bind(this)}>Login</Button>
+                          </form>
+                          :
+                          ""
+                    }
                     <h4>All images courtesy of Wikimedia</h4>
                   </div>
                 )

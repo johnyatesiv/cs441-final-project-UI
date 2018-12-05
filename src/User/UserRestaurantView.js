@@ -17,14 +17,18 @@ class UserRestaurantView extends React.Component {
     constructor(props) {
         super(props);
 
+        let lat = this.getCookie("lat");
+        let lng = this.getCookie("lng");
+        let userLat = (lat ? lat : 32.9781759);
+        let userLng = (lng ? lng : -117.080604);
 
         this.state = {
             displayMap: true,
             selectedRestaurant: false,
             displayMenu: false,
             activeMenu: [],
-            userLat: this.getCookie("lat"),
-            userLng: this.getCookie("lng")
+            userLat: userLat,
+            userLng: userLng
         };
     }
 
