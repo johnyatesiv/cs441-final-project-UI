@@ -27,6 +27,7 @@ class App extends React.Component {
     this.getRestaurants();
     this.getMenus();
     this.getOrders();
+    this.getGeolocation();
   }
 
   mutateState(key, value) {
@@ -184,6 +185,23 @@ class App extends React.Component {
         errorDetails: err
       });
     });
+  }
+
+  getGeolocation() {
+    if(navigator.geolocation) {
+      try {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          alert("got geolocation");
+          document.cookie = "lat="+position.coords.lat+";lng="+position.coords.lng;
+        }, function(error) {
+          console.log(error);
+        });
+      } catch(e) {
+        console.log(e);
+      }
+    } else {
+      alert("Geolocation is not supported by this browser!")
+    }
   }
 
   checkout() {

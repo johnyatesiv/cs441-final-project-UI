@@ -2,6 +2,7 @@
     width: 92vw;
     max-width: 92vw;
     min-width: 200px;
+    min-height: 20vh;
     margin: 4vw;
     background-color: #494a44;
 }
@@ -14,9 +15,9 @@
     width: 92vw;
     max-width: 92vw;
     min-width: 20vw;
-    height: 80vh;
-    max-height: 80vh;
-    min-height: 20vw;
+    /*height: 80vh;*/
+    max-height: 999vh;
+    min-height: 70vh;
     text-align: center;
     background-color: #8AA29E;
     border: 2px solid #3f4845;
@@ -24,10 +25,10 @@
 
 .CartItem {
     padding: 2vw;
-    width: 15vw;
-    max-width: 15vw;
-    height: 25vw;
-    max-height: 25vh;
+    width: 12vw;
+    max-width: 12vw;
+    height: 20vh;
+    max-height: 20vh;
     margin: 1vw;
     text-align: center;
 }
@@ -38,16 +39,22 @@
     max-width: 10vw;
     max-height: 15vh;
     border: 1px solid #686963;
+    border-radius: 100px;
 }
 
 .CartActions {
-    margin-left: 65vw;
-    margin-top: 25%;
+    margin-left: 70vw;
+    max-width: 15vw;
+    padding: 1vw;
+    border-radius: 20px;
     bottom: 0;
-    font-size: 100%;
+    /*margin-top: 45vh;*/
+    background-color: white;
 }
 
 .CheckoutButton {
     background-color: #686963;
     color: #686963;
+    border: 1px solid black!important;
+    margin-top: 1vh!important;
 }

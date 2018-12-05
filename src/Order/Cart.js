@@ -23,7 +23,7 @@ class Cart extends React.Component {
             total += this.props.cartItems[k].price*this.props.cartItems[k].quantity;
         }
 
-        return total;
+        return total.toLocaleString("en-US", {style: "currency", currency: "USD"});
     }
 
     removeItem(id) {
@@ -51,10 +51,11 @@ class Cart extends React.Component {
                 >
                     <Close />
                 </IconButton>
+                Ready to place your order?
                 <div className="CartContent">
                     <Grid
-                        className="CartGrid"
                         container
+                        className="CartGrid"
                         direction="column"
                         justify="left"
                         alignItems="left"
@@ -65,10 +66,9 @@ class Cart extends React.Component {
                                 return (<CartItem key={item.id} item={item}></CartItem>);
                             })
                         }
-                        <br />
                     </Grid>
                     <div className="CartActions">
-                        <b>Total:</b> ${this.calculateTotal()}
+                        <b>Total:</b> {this.calculateTotal()}
                         <br />
                         <Button
                             className="CheckoutButton"

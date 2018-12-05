@@ -31,7 +31,7 @@ class Menu extends React.Component {
             >
                 <Close className="CloseButton" onClick={this.props.closeMenu}></Close>
                 <div className="MenuHeader">
-                    <h1>Menu</h1>
+                    <h1>{this.props.restaurantName} Menu</h1>
                 </div>
                 <div className="ActiveMenu">
                     <Grid
@@ -68,6 +68,14 @@ class MenuItem extends React.Component {
         //this.props.closeMenu();
     }
 
+    getItemInfo() {
+       return (
+           <span className="MenuItemInfo">
+                {this.props.item.name} {this.props.item.price.toLocaleString("en-US", {style: "currency", currency: "USD"})}
+           </span>
+       );
+    }
+
     render() {
         return (
             <Card
@@ -81,12 +89,14 @@ class MenuItem extends React.Component {
                     >
                     </CardMedia>
                     <br/>
-                    {this.props.item.name} ${this.props.item.price}
+                    {this.getItemInfo()}
                     <CardActions>
                         <Button
                             className="MenuBuyButton"
                             onClick={this.passItemToAppCart.bind(this)}
-                        >Order</Button>
+                        >
+                            Order
+                        </Button>
                     </CardActions>
                 </CardContent>
             </Card>

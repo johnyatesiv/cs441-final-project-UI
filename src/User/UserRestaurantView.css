@@ -42,3 +42,15 @@
 .RestaurantMap {
     height: 50vh;
 }
+
+.RestaurantMapElement {
+    height: 80vh;
+}
+
+.RestaurantMapContainerElement {
+    height: 80vh;
+}
+
+.RestaurantMapLoader {
+    height: 80vh;
+}
