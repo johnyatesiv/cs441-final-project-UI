@@ -45,6 +45,7 @@ class UserOrderView extends React.Component {
             orders.push(this.props.orders[k]);
         }
 
+        orders.reverse();
         return orders;
     }
 

@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 /** Other Views **/
 import Menu from "../Menu/MenuView";
@@ -18,8 +19,24 @@ class UserRestaurantView extends React.Component {
         this.state = {
             selectedRestaurant: false,
             displayMenu: false,
-            activeMenu: []
+            activeMenu: [],
+            userLat: 0,
+            userLng: 0
         };
+    }
+
+    componentWillReceiveProps() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                this.setState({
+                    userLat: position.coords.latitude,
+                    userLng: position.coords.longitude
+                });
+            });
+            alert("got geolocation: "+this.state.userLat+" / "+this.state.userLng);
+        } else {
+            /* geolocation IS NOT available */
+        }
     }
 
     componentDidMount() {
@@ -55,6 +72,12 @@ class UserRestaurantView extends React.Component {
                     className="UserRestaurantViewContainer"
                 >
                     <h1>Restaurants Near You</h1>
+                    <RestaurantMap
+                        restaurants={this.getRestaurants()}
+                        openParentMenu={this.openMenu}
+                        userLat={this.state.userLat}
+                        userLng={this.state.userLng}
+                    />
                     <Grid
                         className="UserRestaurantViewGrid"
                         container
@@ -88,6 +111,56 @@ class UserRestaurantView extends React.Component {
                 </div>
         );
     }
+}
+
+class RestaurantMap extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    createMarker(restaurant) {
+        return (
+            <Marker
+                key={restaurant.id}
+                position={{ lat: restaurant.lat, lng: restaurant.lng }}
+                onClick={this.props.openParentMenu.bind(this, restaurant.id)}
+            />
+        );
+    }
+
+    addMarkers() {
+        let markers = [];
+
+        this.props.restaurants.forEach((restaurant) => {
+            markers.push(this.createMarker(restaurant));
+        });
+
+        console.log(markers);
+
+        return markers;
+    }
+
+    render() {
+       const MapComponent = withScriptjs(withGoogleMap((props) =>
+            <GoogleMap
+                defaultZoom={8}
+                defaultCenter={{ lat: this.props.userLat, lng: this.props.userLng }}
+            >
+                {this.addMarkers()}
+             </GoogleMap>
+        ));
+
+        return (
+            <MapComponent
+                className="RestaurantMap"
+                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyD44S3kM5pY8Tae-uz5c6YCd-F7gABvSi0"
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `400px` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+            />
+        )
+    }
+
 }
 
 class RestaurantSelection extends React.Component {
