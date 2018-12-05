@@ -191,10 +191,13 @@ class App extends React.Component {
     if(navigator.geolocation) {
       try {
         navigator.geolocation.getCurrentPosition(function(position) {
-          alert("got geolocation");
+          console.log("got geolocation!");
+          console.log(position);
           document.cookie = "lat="+position.coords.lat+";lng="+position.coords.lng;
         }, function(error) {
           console.log(error);
+        }, {
+          enableHighAccuracy: true
         });
       } catch(e) {
         console.log(e);
