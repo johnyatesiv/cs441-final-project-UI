@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { connect } from "react-redux";
 
 /** Other Views **/
 import Menu from "../Menu/MenuView";
@@ -48,13 +49,6 @@ class UserRestaurantView extends React.Component {
         });
     }
 
-    openMenuExplicit(id) {
-        this.setState({
-            displayMenu: true,
-            activeMenu: this.props.restaurants[id].items
-        });
-    }
-
     closeMenu() {
         this.setState({
             displayMenu: false
@@ -72,7 +66,10 @@ class UserRestaurantView extends React.Component {
     }
 
     selectRestaurant() {
-        this.openMenuExplicit(arguments[0] - 1);
+        //this.setState({
+        //    displayMenu: true,
+        //    activeMenu: this.props.restaurants[arguments[0] - 1].items
+        //});
     }
 
     render() {
@@ -83,7 +80,6 @@ class UserRestaurantView extends React.Component {
                     <h1>Restaurants Near You</h1>
                     <RestaurantMap
                         restaurants={this.getRestaurants()}
-                        openParentMenu={this.openMenu}
                         userLat={this.state.userLat}
                         userLng={this.state.userLng}
                         selectRestaurant={this.selectRestaurant}

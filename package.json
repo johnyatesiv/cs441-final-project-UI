@@ -41,7 +41,12 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-google-maps": "^9.4.5",
+    "react-redux": "^6.0.0",
     "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
     "sequelize": "^4.41.0"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.4.2"
   }
 }
