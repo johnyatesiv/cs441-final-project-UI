@@ -93,10 +93,6 @@ class UserOrderView extends React.Component {
 }
 
 class OrderSelection extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     openItemSummary(order) {
 
     }
@@ -126,7 +122,7 @@ class OrderSelection extends React.Component {
                             return (
                                 <Card styles={{width: "10%"}}>
                                     <CardMedia>
-                                        <img src={item.item.image} />
+                                        <img src={item.item.image} alt={item.item.name}/>
                                     </CardMedia>
                                     <CardContent>
                                         {item.item.name}

@@ -1,7 +1,7 @@
 import React from 'react';
 import "./MenuView.css";
 import Popover from '@material-ui/core/Popover';
-import { Fastfood, Close } from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';

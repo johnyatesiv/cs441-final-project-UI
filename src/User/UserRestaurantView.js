@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 /** Other Views **/
@@ -33,7 +32,6 @@ class UserRestaurantView extends React.Component {
                     userLng: position.coords.longitude
                 });
             });
-            alert("got geolocation: "+this.state.userLat+" / "+this.state.userLng);
         } else {
             /* geolocation IS NOT available */
         }
@@ -47,6 +45,13 @@ class UserRestaurantView extends React.Component {
         this.setState({
             displayMenu: true,
             activeMenu: this.props.restaurants[arguments[0] - 1].items
+        });
+    }
+
+    openMenuExplicit(id) {
+        this.setState({
+            displayMenu: true,
+            activeMenu: this.props.restaurants[id].items
         });
     }
 
@@ -66,6 +71,10 @@ class UserRestaurantView extends React.Component {
         return restaurants;
     }
 
+    selectRestaurant() {
+        this.openMenuExplicit(arguments[0] - 1);
+    }
+
     render() {
         return (
                 <div
@@ -77,6 +86,7 @@ class UserRestaurantView extends React.Component {
                         openParentMenu={this.openMenu}
                         userLat={this.state.userLat}
                         userLng={this.state.userLng}
+                        selectRestaurant={this.selectRestaurant}
                     />
                     <Grid
                         className="UserRestaurantViewGrid"
@@ -114,16 +124,12 @@ class UserRestaurantView extends React.Component {
 }
 
 class RestaurantMap extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     createMarker(restaurant) {
         return (
             <Marker
                 key={restaurant.id}
                 position={{ lat: restaurant.lat, lng: restaurant.lng }}
-                onClick={this.props.openParentMenu.bind(this, restaurant.id)}
+                onClick={this.props.selectRestaurant.bind(this, restaurant.id)}
             />
         );
     }
