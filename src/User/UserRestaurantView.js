@@ -20,8 +20,8 @@ class UserRestaurantView extends React.Component {
             selectedRestaurant: false,
             displayMenu: false,
             activeMenu: [],
-            userLat: 0,
-            userLng: 0
+            userLat: 32.979806,
+            userLng: -117.0780109
         };
     }
 
@@ -46,7 +46,7 @@ class UserRestaurantView extends React.Component {
     openMenu() {
         this.setState({
             displayMenu: true,
-            activeMenu: this.props.restaurants[arguments[0]].items
+            activeMenu: this.props.restaurants[arguments[0] - 1].items
         });
     }
 
@@ -95,7 +95,7 @@ class UserRestaurantView extends React.Component {
                                         <RestaurantSelection
                                             key={restaurant.id}
                                             restaurant={restaurant}
-                                            openParentMenu={this.openMenu.bind(this, restaurant.id)}
+                                            openParentMenu={this.openMenu.bind(this, restaurant.id+1)}
                                         ></RestaurantSelection>
                                     );
                                 }
@@ -135,15 +135,13 @@ class RestaurantMap extends React.Component {
             markers.push(this.createMarker(restaurant));
         });
 
-        console.log(markers);
-
         return markers;
     }
 
     render() {
        const MapComponent = withScriptjs(withGoogleMap((props) =>
             <GoogleMap
-                defaultZoom={8}
+                defaultZoom={13}
                 defaultCenter={{ lat: this.props.userLat, lng: this.props.userLng }}
             >
                 {this.addMarkers()}
